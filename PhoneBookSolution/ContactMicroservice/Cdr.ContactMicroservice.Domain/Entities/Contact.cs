@@ -1,6 +1,5 @@
 ﻿using Ardalis.GuardClauses;
-using Cdr.ContactMicroservice.Domain.Core;
-using Cdr.ContactMicroservice.Domain.Validations;
+using Cdr.ContactMicroservice.Domain.Core; 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace Cdr.ContactMicroservice.Domain.Entities
         private Contact() { }
 
 
-        internal Contact(string name, string surname, string companyName)
+        public Contact(string name, string surname, string companyName)
         {
             Name = name;
             Surname = surname;
@@ -30,7 +29,7 @@ namespace Cdr.ContactMicroservice.Domain.Entities
         public void RemoveDetail(string detailId)
         {
             Guard.Against.NullOrEmpty(detailId, nameof(detailId));
-            var detail=_contactDetails.FirstOrDefault(d => d.Id == detailId);
+            var detail=_contactDetails.FirstOrDefault(d => d.Id == Guid.Parse(detailId));
             Guard.Against.Null(detail,message: $"Entity with {detailId} not found.");
             _contactDetails.Remove(detail);
         }

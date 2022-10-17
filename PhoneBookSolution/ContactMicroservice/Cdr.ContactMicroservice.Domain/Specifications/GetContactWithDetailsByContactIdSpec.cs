@@ -15,7 +15,7 @@ namespace Cdr.ContactMicroservice.Domain.Specifications
         {
             Guard.Against.NullOrEmpty(contactId, nameof(contactId));
             Query
-                .Where(c => c.Id == contactId)
+                .Where(c => c.Id == Guid.Parse(contactId))
                 .Include(c => c.ContactDetails);
 
         }
