@@ -7,21 +7,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContactMicroservice", "Cont
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportMicroservice", "ReportMicroservice", "{6C42070C-C9B9-4060-A99B-467700BFEAA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdr.ContactMicroservice.RestfullAPI", "ContactMicroservice\Cdr.ContactMicroservice.RestfullAPI\Cdr.ContactMicroservice.RestfullAPI.csproj", "{113AAB60-8EF5-47DD-AFA9-B63CA9BBC780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ContactMicroservice.RestfullAPI", "ContactMicroservice\Cdr.ContactMicroservice.RestfullAPI\Cdr.ContactMicroservice.RestfullAPI.csproj", "{113AAB60-8EF5-47DD-AFA9-B63CA9BBC780}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdr.ContactMicroservice.Domain", "ContactMicroservice\Cdr.ContactMicroservice.Domain\Cdr.ContactMicroservice.Domain.csproj", "{B3BD306D-BDC6-4D78-80B5-3E7F8AEF6F79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ContactMicroservice.Domain", "ContactMicroservice\Cdr.ContactMicroservice.Domain\Cdr.ContactMicroservice.Domain.csproj", "{B3BD306D-BDC6-4D78-80B5-3E7F8AEF6F79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdr.ContactMicroservice.Infrastructure", "ContactMicroservice\Cdr.ContactMicroservice.Infrastructure\Cdr.ContactMicroservice.Infrastructure.csproj", "{A3CBE6D1-D7D9-4B1E-8E95-999D357EC0C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ContactMicroservice.Infrastructure", "ContactMicroservice\Cdr.ContactMicroservice.Infrastructure\Cdr.ContactMicroservice.Infrastructure.csproj", "{A3CBE6D1-D7D9-4B1E-8E95-999D357EC0C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdr.ContactMicroservice.Persistence", "ContactMicroservice\Cdr.ContactMicroservice.Persistence\Cdr.ContactMicroservice.Persistence.csproj", "{F8A7A747-C02B-4EDB-891C-2A52DADA6301}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ContactMicroservice.Persistence", "ContactMicroservice\Cdr.ContactMicroservice.Persistence\Cdr.ContactMicroservice.Persistence.csproj", "{F8A7A747-C02B-4EDB-891C-2A52DADA6301}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdr.ReportMicroservice.RestfullAPI", "ReportMicroservice\Cdr.ReportMicroservice.RestfullAPI\Cdr.ReportMicroservice.RestfullAPI.csproj", "{EE3028ED-5702-4D39-97D1-74CBB55DFEBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ReportMicroservice.RestfullAPI", "ReportMicroservice\Cdr.ReportMicroservice.RestfullAPI\Cdr.ReportMicroservice.RestfullAPI.csproj", "{EE3028ED-5702-4D39-97D1-74CBB55DFEBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdr.ReportMicroservice.Persistence", "ReportMicroservice\Cdr.ReportMicroservice.Persistence\Cdr.ReportMicroservice.Persistence.csproj", "{26DDA1DB-2465-48E9-973A-0247DA25A8D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ReportMicroservice.Persistence", "ReportMicroservice\Cdr.ReportMicroservice.Persistence\Cdr.ReportMicroservice.Persistence.csproj", "{26DDA1DB-2465-48E9-973A-0247DA25A8D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdr.ReportMicroservice.Infrastructure", "ReportMicroservice\Cdr.ReportMicroservice.Infrastructure\Cdr.ReportMicroservice.Infrastructure.csproj", "{C313EEFC-601A-4F54-AD39-55C44EEAD125}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ReportMicroservice.Infrastructure", "ReportMicroservice\Cdr.ReportMicroservice.Infrastructure\Cdr.ReportMicroservice.Infrastructure.csproj", "{C313EEFC-601A-4F54-AD39-55C44EEAD125}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdr.ReportMicroservice.Domain", "ReportMicroservice\Cdr.ReportMicroservice.Domain\Cdr.ReportMicroservice.Domain.csproj", "{98AEBAF1-2826-445E-A3F7-91D5A1E71DC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ReportMicroservice.Domain", "ReportMicroservice\Cdr.ReportMicroservice.Domain\Cdr.ReportMicroservice.Domain.csproj", "{98AEBAF1-2826-445E-A3F7-91D5A1E71DC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BAC55F08-DF41-47B2-83AE-2FCA151C2BAB}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
