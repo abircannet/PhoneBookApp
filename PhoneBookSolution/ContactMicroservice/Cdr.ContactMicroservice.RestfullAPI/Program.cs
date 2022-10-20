@@ -1,3 +1,5 @@
+using Cdr.ContactMicroservice.Domain.Interface;
+using Cdr.ContactMicroservice.Domain.Services;
 using Cdr.ContactMicroservice.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +16,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ContactDbContext>(opts =>
 {
-    opts.UseNpgsql(builder.Configuration.GetConnectionString("Default"));     
+    opts.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
     AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 });
 
-
+builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+builder.Services.AddScoped<IContactService, ContactService>();
 
 
 var app = builder.Build();
@@ -44,7 +49,7 @@ using (var scope = app.Services.CreateScope())
         var contactContext = scopedProvider.GetRequiredService<ContactDbContext>();
         await ContactContextSeed.SeedAsync(contactContext);
 
-       
+
     }
     catch (Exception ex)
     {

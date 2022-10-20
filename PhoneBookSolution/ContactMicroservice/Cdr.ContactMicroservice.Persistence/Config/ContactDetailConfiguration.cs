@@ -26,6 +26,7 @@ namespace Cdr.ContactMicroservice.Persistence.Config
             //   .HasColumnType("uuid")
             //   .HasDefaultValueSql("uuid_generate_v4()")
             //   .IsRequired();
+             
 
             builder.Property(x => x.ContactDetailType).IsRequired();
             builder.Property(x => x.Content).IsRequired().HasMaxLength(512); 

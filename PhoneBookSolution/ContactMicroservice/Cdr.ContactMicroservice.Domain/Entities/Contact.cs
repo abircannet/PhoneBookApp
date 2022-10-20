@@ -13,9 +13,14 @@ namespace Cdr.ContactMicroservice.Domain.Entities
     {
         private Contact() { }
 
-
+        public Contact(string name, string surname):this(name,surname,null)
+        { 
+        }
         public Contact(string name, string surname, string companyName)
         {
+            Guard.Against.Null(name, nameof(name), $"{nameof(name)} can not be null.");
+            Guard.Against.Null(surname, nameof(surname), $"{nameof(surname)} can not be null.");
+
             Name = name;
             Surname = surname;
             CompanyName = companyName;
