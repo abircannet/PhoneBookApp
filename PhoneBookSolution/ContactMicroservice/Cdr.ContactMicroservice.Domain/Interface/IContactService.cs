@@ -1,4 +1,5 @@
 ﻿using Cdr.ContactMicroservice.Domain.Entities;
+using Core.DTOs;
 
 namespace Cdr.ContactMicroservice.Domain.Interface
 {
@@ -10,5 +11,6 @@ namespace Cdr.ContactMicroservice.Domain.Interface
         Task DeleteDetailFromContactAsync(string contactId, string detailId);
         Task<IReadOnlyCollection<Contact>> GetAllContactsAsync();
         Task<Contact> GetContactWithDetailAsync(string contactId);
+        Task<ReportDataDTO> GetContactReportData(string location);
     }
 }

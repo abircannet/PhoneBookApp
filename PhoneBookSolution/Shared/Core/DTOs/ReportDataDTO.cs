@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cdr.ReportMicroservice.Domain.DTOs
+namespace Core.DTOs
 {
-    public class ReportDataDto
+    public class ReportDataDTO
     {
         public string Location { get; set; }
 

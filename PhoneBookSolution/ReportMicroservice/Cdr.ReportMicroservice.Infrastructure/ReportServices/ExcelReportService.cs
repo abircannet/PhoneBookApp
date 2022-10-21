@@ -1,4 +1,5 @@
-﻿using Cdr.ReportMicroservice.Domain.Interfaces;
+﻿using Cdr.ReportMicroservice.Domain.DTOs;
+using Cdr.ReportMicroservice.Domain.Interfaces;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,10 @@ namespace Cdr.ReportMicroservice.Domain.Services
             _reportApiService = reportApiService;
         }
 
-        public async Task<byte[]> CreateExcel()
+        public async Task<byte[]> CreateExcelAsync(SendReportRequestMessageDTO dto)
         {
-            var reportData = await _reportApiService.GetReportDataAsync();
+            
+            var reportData = await _reportApiService.GetReportDataAsync(dto.Location);
             using var package = new ExcelPackage();
             var reportSheet = package.Workbook.Worksheets.Add("Location Report");
 

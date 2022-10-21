@@ -1,6 +1,7 @@
 ﻿using Cdr.ReportMicroservice.Domain.DTOs;
 using Cdr.ReportMicroservice.Domain.Entities;
 using Cdr.ReportMicroservice.Domain.Interfaces;
+using Core.DTOs;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace Cdr.ReportMicroservice.Infrastructure.ReportServices
             _httpClient = httpClient;
             this._configuration = configuration;
         }
-        public  List<ReportDataDto> GetReportData() => GetReportDataAsync().Result;
+        public  List<ReportDataDTO> GetReportData() => GetReportDataAsync(string location).Result;
 
-        public async Task<List<ReportDataDto>> GetReportDataAsync() => await _httpClient.GetFromJsonAsync<List<ReportDataDto>>(_configuration.GetSection("ContactMicroserviceUrl").Value);
+        public async Task<List<ReportDataDTO>> GetReportDataAsync(string location) => await _httpClient.GetFromJsonAsync<List<ReportDataDTO>>($"{_configuration.GetSection("ContactMicroserviceUrl").Value}/);
     }
 }

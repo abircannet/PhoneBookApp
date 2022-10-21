@@ -2,6 +2,7 @@
 using Cdr.ContactMicroservice.Domain.Entities;
 using Cdr.ContactMicroservice.Domain.Interface;
 using Cdr.ContactMicroservice.Domain.Specifications;
+using Core.DTOs;
 using Core.Interfaces;
 
 namespace Cdr.ContactMicroservice.Domain.Services
@@ -45,13 +46,19 @@ namespace Cdr.ContactMicroservice.Domain.Services
         public async Task<IReadOnlyCollection<Contact>> GetAllContactsAsync()
         {
             return (await _contactRepository.ListAsync()).AsReadOnly();
-        } 
+        }
+
         public async Task<Contact> GetContactWithDetailAsync(string contactId)
         {
             Guard.Against.Null(contactId, nameof(contactId));
 
             var contact = await _contactRepository.FirstOrDefaultAsync(new GetContactWithDetailsByContactIdSpec(contactId));
             return contact;
+        }
+
+        public Task<ReportDataDTO> GetContactReportData(string location)
+        {
+            var data=_contactRepository.ListAsync()
         }
     }
 }

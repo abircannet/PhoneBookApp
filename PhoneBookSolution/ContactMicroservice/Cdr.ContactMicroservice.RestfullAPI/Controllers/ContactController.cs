@@ -31,12 +31,12 @@ namespace Cdr.ContactMicroservice.RestfullAPI.Controllers
                 return CreatedAtAction(
                            nameof(GetById),
                            new { id = contact.Id },
-                           new GetContactOutputDTO 
-                           { 
-                               Id = contact.Id.ToString(), 
-                               CompanyName = contact.CompanyName, 
-                               Name = contact.Name, 
-                               Surname = contact.Surname 
+                           new GetContactOutputDTO
+                           {
+                               Id = contact.Id.ToString(),
+                               CompanyName = contact.CompanyName,
+                               Name = contact.Name,
+                               Surname = contact.Surname
                            });
             }
             catch (Exception ex)
@@ -88,6 +88,14 @@ namespace Cdr.ContactMicroservice.RestfullAPI.Controllers
             };
 
 
+            return Ok(dto);
+        }
+        [HttpGet("[controller]/[action]/{location}")]
+        public async Task<IActionResult> GetReportDataAsync(string location)
+        {
+            var dto=await contactService.GetContactReportData(location);
+            if (dto == null)
+                NotFound();
             return Ok(dto);
         }
     }
