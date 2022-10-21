@@ -20,8 +20,7 @@ namespace Cdr.ContactMicroservice.Domain.Entities
 
         public ContactDetailType ContactDetailType { get; private set; }
         public string Content { get; private set; }
-
-        public Contact Contact { get; private set; }
+         
         public Guid ContactId { get; private set; }
     }
 }

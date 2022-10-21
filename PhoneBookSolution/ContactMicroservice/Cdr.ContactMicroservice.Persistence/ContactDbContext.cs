@@ -17,8 +17,9 @@ namespace Cdr.ContactMicroservice.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.HasPostgresExtension("uuid-ossp");
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            //for postgre
+            //modelBuilder.HasPostgresExtension("uuid-ossp");
         }
     }
 }

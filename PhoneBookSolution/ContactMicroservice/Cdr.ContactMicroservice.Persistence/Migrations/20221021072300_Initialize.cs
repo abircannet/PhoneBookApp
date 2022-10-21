@@ -17,10 +17,10 @@ namespace Cdr.ContactMicroservice.Persistence.Migrations
                 schema: "dbo",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
-                    Surname = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
-                    CompanyName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CompanyName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,10 +32,10 @@ namespace Cdr.ContactMicroservice.Persistence.Migrations
                 schema: "dbo",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    ContactDetailType = table.Column<byte>(type: "smallint", nullable: false),
-                    Content = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: false),
-                    ContactId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ContactDetailType = table.Column<byte>(type: "tinyint", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
+                    ContactId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,13 +50,6 @@ namespace Cdr.ContactMicroservice.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "ContactDetailsIdentifier",
-                schema: "dbo",
-                table: "ContactDetails",
-                column: "Id",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ContactDetails_ContactDetailType",
                 schema: "dbo",
                 table: "ContactDetails",
@@ -67,13 +60,6 @@ namespace Cdr.ContactMicroservice.Persistence.Migrations
                 schema: "dbo",
                 table: "ContactDetails",
                 column: "ContactId");
-
-            migrationBuilder.CreateIndex(
-                name: "ContactsIdentifier",
-                schema: "dbo",
-                table: "Contacts",
-                column: "Id",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

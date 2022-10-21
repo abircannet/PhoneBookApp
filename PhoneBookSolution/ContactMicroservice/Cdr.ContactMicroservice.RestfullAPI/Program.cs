@@ -16,9 +16,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ContactDbContext>(opts =>
 {
-    opts.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
-    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+    //for postgre
+    //opts.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+    //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
+    opts.UseSqlServer(builder.Configuration.GetConnectionString("default"));
 });
 
 builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));

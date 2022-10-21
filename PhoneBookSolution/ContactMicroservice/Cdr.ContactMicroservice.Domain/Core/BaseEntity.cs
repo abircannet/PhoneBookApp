@@ -11,10 +11,6 @@ namespace Cdr.ContactMicroservice.Domain.Core
         public virtual T Id { get;protected set; }
     }
     public abstract class BaseEntity:BaseEntity<Guid>
-    {
-        public BaseEntity()
-        {
-            Id= Guid.NewGuid();
-        }
+    { 
     }
 }

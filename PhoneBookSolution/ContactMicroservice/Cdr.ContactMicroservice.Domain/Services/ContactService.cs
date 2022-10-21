@@ -29,10 +29,12 @@ namespace Cdr.ContactMicroservice.Domain.Services
         }
 
         public async Task<ContactDetail> AddDetailToContactAsync(string contactId, ContactDetail contactDetail)
-        {  
+        {
             var contact = await _contactRepository.FirstOrDefaultAsync(new GetContactWithDetailsByContactIdSpec(contactId));
-            contact.AddDetail(contactDetail); 
-            await _contactRepository.UpdateAsync(contact); 
+            contact.AddDetail(contactDetail);
+
+            await _contactRepository.UpdateAsync(contact);
+
             return contactDetail;
         }
 

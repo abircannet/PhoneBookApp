@@ -17,24 +17,25 @@ namespace Cdr.ContactMicroservice.Persistence.Config
             builder.ToTable("ContactDetails", "dbo");
             builder.HasKey(x => x.Id);
 
-            builder.HasIndex(x => x.Id)
-                .HasName("ContactDetailsIdentifier")
-                .IsUnique();
+            #region For Postgre
+            //builder.HasIndex(x => x.Id)
+            //    .HasName("ContactDetailsIdentifier")
+            //    .IsUnique();
 
             //builder.Property(x => x.Id)
             //   .HasColumnName("Identifier")
             //   .HasColumnType("uuid")
             //   .HasDefaultValueSql("uuid_generate_v4()")
-            //   .IsRequired();
-             
+            //   .IsRequired(); 
+            #endregion
+
 
             builder.Property(x => x.ContactDetailType).IsRequired();
             builder.Property(x => x.Content).IsRequired().HasMaxLength(512); 
 
             builder.HasIndex(x => new { x.ContactId});
             builder.HasIndex(x => x.ContactDetailType);
-
-            builder.HasOne(x => x.Contact).WithMany(x => x.ContactDetails).HasForeignKey(x => x.ContactId);
+             
 
 
 

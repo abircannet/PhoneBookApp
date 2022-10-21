@@ -16,7 +16,10 @@ namespace Cdr.ContactMicroservice.Persistence
             var retryForAvailability = retry;
             try
             {
-
+                if (context.Database.IsSqlServer())
+                {
+                    context.Database.Migrate();
+                }
                 context.Database.Migrate();
                 if (!await context.Contacts.AnyAsync())
                 {
