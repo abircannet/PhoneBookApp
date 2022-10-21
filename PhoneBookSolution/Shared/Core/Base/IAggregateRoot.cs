@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cdr.ContactMicroservice.Domain.Core
+namespace Core.Base
 {
     public interface IAggregateRoot
     {

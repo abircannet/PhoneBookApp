@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cdr.ContactMicroservice.Domain.Core
+namespace Core.Base
 {
-    public abstract class BaseEntity<T>
+    
+    public abstract class BaseEntity<T>:IEntity
     {
         public virtual T Id { get;protected set; }
     }

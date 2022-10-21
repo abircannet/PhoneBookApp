@@ -1,4 +1,4 @@
-﻿using Cdr.ContactMicroservice.Domain.Core;
+﻿using Core.Base;
 
 namespace Cdr.ContactMicroservice.Domain.Entities
 {

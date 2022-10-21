@@ -1,5 +1,5 @@
 ﻿using Ardalis.GuardClauses;
-using Cdr.ContactMicroservice.Domain.Core; 
+using Core.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
