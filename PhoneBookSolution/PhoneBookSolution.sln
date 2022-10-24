@@ -23,14 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ReportMicroservice.Infr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cdr.ReportMicroservice.Domain", "ReportMicroservice\Cdr.ReportMicroservice.Domain\Cdr.ReportMicroservice.Domain.csproj", "{98AEBAF1-2826-445E-A3F7-91D5A1E71DC3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BAC55F08-DF41-47B2-83AE-2FCA151C2BAB}"
-	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{91678D84-6BE8-4B90-8C7C-61C36FE9383C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Shared\Core\Core.csproj", "{48E2747E-6375-4377-88F4-174397A1C96F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Shared\Core\Core.csproj", "{48E2747E-6375-4377-88F4-174397A1C96F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
