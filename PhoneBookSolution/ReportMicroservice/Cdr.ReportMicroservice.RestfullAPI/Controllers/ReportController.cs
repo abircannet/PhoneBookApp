@@ -1,4 +1,3 @@
-using Cdr.ReportMicroservice.Domain.Entities;
 using Cdr.ReportMicroservice.Domain.Interfaces;
 using Cdr.ReportMicroservice.RestfullAPI.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -53,9 +52,9 @@ namespace Cdr.ReportMicroservice.RestfullAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] string location)
+        public async Task<IActionResult> CreateAsync([FromBody] string location)
         {
-            _reportService.Create(new Domain.DTOs.SendReportRequestMessageDTO { Location = location });
+            await _reportService.CreateAsync(new Domain.DTOs.SendReportRequestMessageDTO { Location = location });
             return NoContent();
         }
     }

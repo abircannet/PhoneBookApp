@@ -1,13 +1,6 @@
 ﻿using Cdr.ReportMicroservice.Domain.Constants;
 using Cdr.ReportMicroservice.Domain.Interfaces;
 using RabbitMQ.Client;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
 
 namespace Cdr.ReportMicroservice.Infrastructure.MessageServices
 {
@@ -40,7 +33,7 @@ namespace Cdr.ReportMicroservice.Infrastructure.MessageServices
         public void Dispose()
         {
             _channel?.Close();
-            _channel?.Dispose(); 
+            _channel?.Dispose();
             _connection?.Close();
             _connection?.Dispose();
         }

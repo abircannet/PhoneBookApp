@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cdr.ReportMicroservice.Domain.DTOs
+﻿namespace Cdr.ReportMicroservice.Domain.DTOs
 {
     public class SendReportRequestMessageDTO
     {
+        public Guid Id { get; set; }
         public string Location { get; set; }
-        public DateTime RequestDateTime { get; set; }=DateTime.UtcNow;
+        public DateTime RequestDateTime { get; set; } = DateTime.UtcNow;
     }
 }

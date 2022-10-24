@@ -1,11 +1,5 @@
 ﻿using Ardalis.GuardClauses;
 using Core.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cdr.ContactMicroservice.Domain.Entities
 {
@@ -13,8 +7,8 @@ namespace Cdr.ContactMicroservice.Domain.Entities
     {
         private Contact() { }
 
-        public Contact(string name, string surname):this(name,surname,null)
-        { 
+        public Contact(string name, string surname) : this(name, surname, null)
+        {
         }
         public Contact(string name, string surname, string companyName)
         {
@@ -34,8 +28,8 @@ namespace Cdr.ContactMicroservice.Domain.Entities
         public void RemoveDetail(string detailId)
         {
             Guard.Against.NullOrEmpty(detailId, nameof(detailId));
-            var detail=_contactDetails.FirstOrDefault(d => d.Id == Guid.Parse(detailId));
-            Guard.Against.Null(detail,message: $"Entity with {detailId} not found.");
+            var detail = _contactDetails.FirstOrDefault(d => d.Id == Guid.Parse(detailId));
+            Guard.Against.Null(detail, message: $"Entity with {detailId} not found.");
             _contactDetails.Remove(detail);
         }
 

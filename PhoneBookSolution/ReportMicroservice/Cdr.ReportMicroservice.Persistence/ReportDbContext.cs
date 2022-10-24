@@ -1,17 +1,12 @@
 ﻿using Cdr.ReportMicroservice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cdr.ReportMicroservice.Persistence
 {
-    public class ReportDbContext:DbContext
+    public class ReportDbContext : DbContext
     {
-        public ReportDbContext(DbContextOptions<ReportDbContext> opt):base(opt){}
+        public ReportDbContext(DbContextOptions<ReportDbContext> opt) : base(opt) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +16,6 @@ namespace Cdr.ReportMicroservice.Persistence
         }
 
 
-        public DbSet<Report> Reports{ get; set; }
+        public DbSet<Report> Reports { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Cdr.ContactMicroservice.Domain.Entities
 {
-    public enum ContactDetailType:byte
+    public enum ContactDetailType : byte
     {
-        Phone=1,
+        Phone = 1,
         Email,
         Location
     }

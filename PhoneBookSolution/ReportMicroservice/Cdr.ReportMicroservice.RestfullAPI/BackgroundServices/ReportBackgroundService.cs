@@ -1,10 +1,10 @@
-﻿using Cdr.ReportMicroservice.Domain.Interfaces;
-using System.Text.Json;
-using System.Text;
+﻿using Cdr.ReportMicroservice.Domain.Constants;
+using Cdr.ReportMicroservice.Domain.DTOs;
+using Cdr.ReportMicroservice.Domain.Interfaces;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using Cdr.ReportMicroservice.Domain.Constants;
-using Cdr.ReportMicroservice.Domain.DTOs;
+using System.Text;
+using System.Text.Json;
 
 namespace Cdr.ReportMicroservice.RestfullAPI.BackgroundServices
 {
@@ -42,17 +42,18 @@ namespace Cdr.ReportMicroservice.RestfullAPI.BackgroundServices
         }
 
         private async Task Consumer_Received(object sender, BasicDeliverEventArgs @event)
-        { 
+        {
             try
             {
-                var dto = JsonSerializer.Deserialize<SendReportRequestMessageDTO>(Encoding.UTF8.GetString(@event.Body.ToArray()));
-             
-                var reportFile = await _excelReportService.CreateExcelAsync(dto);
-               // await _reportApiService.CompleteReportAsync(reportFile, reportExcelMessageDto.ReportId);
+                var encodedString = Encoding.UTF8.GetString(@event.Body.ToArray());
+                var dto = JsonSerializer.Deserialize<SendReportRequestMessageDTO>(encodedString);
+
+                await _excelReportService.CreateExcelAsync(dto);
+
                 _channel.BasicAck(@event.DeliveryTag, false);
             }
             catch (Exception ex)
-            { 
+            {
             }
         }
     }

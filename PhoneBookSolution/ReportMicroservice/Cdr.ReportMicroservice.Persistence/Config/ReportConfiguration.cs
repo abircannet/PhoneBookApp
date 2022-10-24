@@ -12,7 +12,7 @@ namespace Cdr.ReportMicroservice.Persistence.Config
             builder.HasKey(x => x.Id);
             builder.Property(r => r.RequestTime).IsRequired();
             builder.Property(r => r.ReportStatus).IsRequired();
-            builder.Property(r => r.FilePath).HasMaxLength(256);
+            builder.Property(r => r.FilePath).HasMaxLength(256).IsRequired(false);
         }
     }
 }

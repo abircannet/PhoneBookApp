@@ -1,11 +1,5 @@
 ﻿using Cdr.ContactMicroservice.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cdr.ContactMicroservice.Persistence
 {
@@ -23,10 +17,10 @@ namespace Cdr.ContactMicroservice.Persistence
                 context.Database.Migrate();
                 if (!await context.Contacts.AnyAsync())
                 {
-                    await context.Contacts.AddRangeAsync( GetPreConfiguredContactData());
+                    await context.Contacts.AddRangeAsync(GetPreConfiguredContactData());
                     await context.SaveChangesAsync();
                 }
-                
+
 
             }
             catch (Exception)

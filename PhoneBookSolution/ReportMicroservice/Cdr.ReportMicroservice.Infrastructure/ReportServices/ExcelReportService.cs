@@ -1,30 +1,31 @@
 ﻿using Cdr.ReportMicroservice.Domain.DTOs;
+using Cdr.ReportMicroservice.Domain.Entities;
 using Cdr.ReportMicroservice.Domain.Interfaces;
+using Core.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cdr.ReportMicroservice.Domain.Services
 {
     public class ExcelReportService : IExcelReportService
     {
         private readonly IReportApiService _reportApiService;
+        private readonly IServiceProvider _serviceProvider;
 
-        public ExcelReportService(IReportApiService reportApiService)
+        public ExcelReportService(IReportApiService reportApiService, IServiceProvider serviceProvider)
+
         {
             _reportApiService = reportApiService;
+            _serviceProvider = serviceProvider;
         }
 
-        public async Task<byte[]> CreateExcelAsync(SendReportRequestMessageDTO dto)
+        public async Task CreateExcelAsync(SendReportRequestMessageDTO dto)
         {
-            
+
             var reportData = await _reportApiService.GetReportDataAsync(dto.Location);
             using var package = new ExcelPackage();
-            var reportSheet = package.Workbook.Worksheets.Add("Location Report");
+            var reportSheet = package.Workbook.Worksheets.Add("Location_Report");
 
             #region Create Column Title
 
@@ -46,16 +47,38 @@ namespace Cdr.ReportMicroservice.Domain.Services
             #region Create Report Content
 
             var rowIndex = 2;
-            foreach (var item in reportData)
-            {
-                reportSheet.Cells[rowIndex, 1].Value = item.Location;
-                reportSheet.Cells[rowIndex, 2].Value = item.PersonCount;
-                reportSheet.Cells[rowIndex, 3].Value = item.PhoneCount;
-            }
+
+            reportSheet.Cells[rowIndex, 1].Value = reportData.Location;
+            reportSheet.Cells[rowIndex, 2].Value = reportData.PersonCount;
+            reportSheet.Cells[rowIndex, 3].Value = reportData.PhoneCount;
+
 
             #endregion
 
-            return package.GetAsByteArray();
+
+            var fileName = Guid.NewGuid().ToString() + ".xlsx";
+            var saveDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/reports");
+            var savePath = Path.Combine(saveDirectory, fileName);
+            if (!Directory.Exists(saveDirectory))
+                Directory.CreateDirectory(saveDirectory);
+            await package.SaveAsAsync(savePath);
+
+
+            #region Update Report From DB
+            using (IServiceScope scope = _serviceProvider.CreateScope())
+            {
+                IRepository<Report> _reportRepository =
+                    scope.ServiceProvider.GetRequiredService<IRepository<Report>>();
+
+                var report = await _reportRepository.GetByIdAsync(dto.Id);
+                report.FilePath = savePath;
+                report.ReportStatus = ReportStatus.Completed;
+                await _reportRepository.UpdateAsync(report);
+
+
+            }
+            #endregion
+
         }
     }
 }

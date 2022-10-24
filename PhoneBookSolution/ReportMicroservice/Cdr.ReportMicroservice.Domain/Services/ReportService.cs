@@ -2,28 +2,33 @@
 using Cdr.ReportMicroservice.Domain.Entities;
 using Cdr.ReportMicroservice.Domain.Interfaces;
 using Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cdr.ReportMicroservice.Domain.Services
 {
     public class ReportService : IReportService
     {
-        IRepository<Report> _repository;
+        private readonly IRepository<Report> _repository;
         private readonly IMessageService _messageService;
 
-        public ReportService(IRepository<Report> repository,IMessageService messageService)
+        public ReportService(IRepository<Report> repository, IMessageService messageService)
         {
             _repository = repository;
             this._messageService = messageService;
         }
 
-        public void Create(SendReportRequestMessageDTO dto)
-        { 
-            _messageService.SendMessage(dto); 
+        public async Task CreateAsync(SendReportRequestMessageDTO dto)
+        {
+            try
+            {
+                var report = await _repository.AddAsync(new Report() { ReportStatus = ReportStatus.Continues, RequestTime = dto.RequestDateTime });
+                dto.Id = report.Id;
+                _messageService.SendMessage(dto);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
         public async Task<IReadOnlyCollection<Report>> GetAllAsync()

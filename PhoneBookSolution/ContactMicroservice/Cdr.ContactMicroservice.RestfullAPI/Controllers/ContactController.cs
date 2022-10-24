@@ -3,7 +3,6 @@ using Cdr.ContactMicroservice.Domain.Interface;
 using Cdr.ContactMicroservice.RestfullAPI.DTOs;
 using Cdr.ContactMicroservice.RestfullAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cdr.ContactMicroservice.RestfullAPI.Controllers
 {
@@ -90,10 +89,10 @@ namespace Cdr.ContactMicroservice.RestfullAPI.Controllers
 
             return Ok(dto);
         }
-        [HttpGet("[controller]/[action]/{location}")]
+        [HttpGet("[action]/{location}")]
         public async Task<IActionResult> GetReportDataAsync(string location)
         {
-            var dto=await contactService.GetContactReportData(location);
+            var dto = await contactService.GetContactReportData(location);
             if (dto == null)
                 NotFound();
             return Ok(dto);

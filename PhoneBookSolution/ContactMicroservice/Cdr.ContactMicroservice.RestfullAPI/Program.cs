@@ -2,7 +2,6 @@ using Cdr.ContactMicroservice.Domain.Interface;
 using Cdr.ContactMicroservice.Domain.Services;
 using Cdr.ContactMicroservice.Persistence;
 using Core.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -3,7 +3,6 @@ using Cdr.ContactMicroservice.Domain.Interface;
 using Cdr.ContactMicroservice.RestfullAPI.DTOs;
 using Cdr.ContactMicroservice.RestfullAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cdr.ContactMicroservice.RestfullAPI.Controllers
 {
@@ -17,17 +16,17 @@ namespace Cdr.ContactMicroservice.RestfullAPI.Controllers
         {
             this.contactService = contactService;
         }
-        
+
         [ValidateModel]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddContactDetailInputDTO dto)
         {
-             
+
             try
             {
 
 
-                var contactDetail = await contactService.AddDetailToContactAsync(dto.ContactId, new ContactDetail(dto.ContactDetailType, dto.Content,dto.ContactId));
+                var contactDetail = await contactService.AddDetailToContactAsync(dto.ContactId, new ContactDetail(dto.ContactDetailType, dto.Content, dto.ContactId));
 
                 return Ok(contactDetail);
             }
@@ -38,7 +37,7 @@ namespace Cdr.ContactMicroservice.RestfullAPI.Controllers
 
         }
         [HttpDelete]
-        public async Task<IActionResult> Remove(string contactId,string detailId)
+        public async Task<IActionResult> Remove(string contactId, string detailId)
         {
             try
             {
@@ -50,6 +49,6 @@ namespace Cdr.ContactMicroservice.RestfullAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-    
+
     }
 }

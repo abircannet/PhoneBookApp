@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Net;
 
 namespace Cdr.ContactMicroservice.RestfullAPI.Filters
 {
@@ -11,8 +10,8 @@ namespace Cdr.ContactMicroservice.RestfullAPI.Filters
         {
             if (!context.ModelState.IsValid)
             {
-                context.Result=new BadRequestObjectResult(context.ModelState);
+                context.Result = new BadRequestObjectResult(context.ModelState);
             }
-        }  
+        }
     }
 }
