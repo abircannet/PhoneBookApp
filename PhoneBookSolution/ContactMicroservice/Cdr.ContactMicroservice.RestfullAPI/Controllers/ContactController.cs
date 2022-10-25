@@ -75,7 +75,7 @@ namespace Cdr.ContactMicroservice.RestfullAPI.Controllers
         {
             var data = (await contactService.GetContactWithDetailAsync(id));
             if (data == null)
-                return NoContent();
+                return NotFound();
 
             var dto = new GetContactWithDetailOutputDTO()
             {
