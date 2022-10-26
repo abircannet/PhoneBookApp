@@ -1,6 +1,7 @@
 using Cdr.ContactMicroservice.Domain.Interface;
 using Cdr.ContactMicroservice.Domain.Services;
 using Cdr.ContactMicroservice.Persistence;
+using Cdr.ContactMicroservice.Persistence.Postgre;
 using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,17 +15,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddDbContext<ContactDbContext>(opts =>
+
+builder.Services.AddDbContext< Cdr.ContactMicroservice.Persistence.Postgre.ContactDbContext >(opts =>
 {
     //for postgre
-    //opts.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
-    //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+    opts.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-    opts.UseSqlServer(builder.Configuration.GetConnectionString("default"));
+    //opts.UseSqlServer(builder.Configuration.GetConnectionString("default"));
 });
 
-builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
-builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+builder.Services.AddScoped(typeof(IReadRepository<>), typeof(Cdr.ContactMicroservice.Persistence.Postgre.EfRepository<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Cdr.ContactMicroservice.Persistence.Postgre.EfRepository<>));
 builder.Services.AddScoped<IContactService, ContactService>();
 
 
@@ -48,8 +50,8 @@ using (var scope = app.Services.CreateScope())
     var scopedProvider = scope.ServiceProvider;
     try
     {
-        var contactContext = scopedProvider.GetRequiredService<ContactDbContext>();
-        await ContactContextSeed.SeedAsync(contactContext);
+        var contactContext = scopedProvider.GetRequiredService<Cdr.ContactMicroservice.Persistence.Postgre.ContactDbContext>();
+        await Cdr.ContactMicroservice.Persistence.Postgre.ContactContextSeed.SeedAsync(contactContext);
 
 
     }

@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Cdr.ReportMicroservice.Domain\Cdr.ReportMicroservice.Domain.csproj" />
     <ProjectReference Include="..\Cdr.ReportMicroservice.Infrastructure\Cdr.ReportMicroservice.Infrastructure.csproj" />
+    <ProjectReference Include="..\Cdr.ReportMicroservice.Persistence.Postgre\Cdr.ReportMicroservice.Persistence.Postgre.csproj" />
     <ProjectReference Include="..\Cdr.ReportMicroservice.Persistence\Cdr.ReportMicroservice.Persistence.csproj" />
   </ItemGroup>
 
