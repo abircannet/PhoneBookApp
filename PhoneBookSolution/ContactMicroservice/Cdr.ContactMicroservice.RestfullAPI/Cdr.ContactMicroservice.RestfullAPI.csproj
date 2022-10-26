@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cdr.ContactMicroservice.Persistence.Postgre\Cdr.ContactMicroservice.Persistence.Postgre.csproj" />
     <ProjectReference Include="..\Cdr.ContactMicroservice.Persistence\Cdr.ContactMicroservice.Persistence.csproj" />
   </ItemGroup>
 

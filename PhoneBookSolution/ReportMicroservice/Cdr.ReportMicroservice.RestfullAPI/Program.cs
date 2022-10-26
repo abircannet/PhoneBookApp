@@ -23,13 +23,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 ExcelPackage.LicenseContext = LicenseContext.Commercial;
 
-builder.Services.AddDbContext<ReportDbContext>(opts =>
+builder.Services.AddDbContext<Cdr.ReportMicroservice.Persistence.Postgre.ReportDbContext>(opts =>
 {
+    //for postgre
+    opts.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
+    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-    opts.UseSqlServer(builder.Configuration.GetConnectionString("default"));
+    //opts.UseSqlServer(builder.Configuration.GetConnectionString("default"));
 });
-builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
-builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+builder.Services.AddScoped(typeof(IReadRepository<>), typeof(Cdr.ReportMicroservice.Persistence.Postgre.EfRepository<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Cdr.ReportMicroservice.Persistence.Postgre.EfRepository<>));
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IMessageService, RabbitMQMessageProducer>();
 builder.Services.AddSingleton<IExcelReportService, ExcelReportService>();
@@ -62,8 +65,8 @@ using (var scope = app.Services.CreateScope())
     var scopedProvider = scope.ServiceProvider;
     try
     {
-        var reportContext = scopedProvider.GetRequiredService<ReportDbContext>();
-        await ReportDbContextSeed.SeedAsync(reportContext);
+        var reportContext = scopedProvider.GetRequiredService<Cdr.ReportMicroservice.Persistence.Postgre.ReportDbContext>();
+        await Cdr.ReportMicroservice.Persistence.Postgre.ReportDbContextSeed.SeedAsync(reportContext);
 
 
     }
